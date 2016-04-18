@@ -8,6 +8,7 @@ RUN \
     && apk add --update \
         curl \
     && rm -fr /var/cache/apk/* \
+    && mkdir -p /usr/share/nginx/html \
 	&& curl -o rainloop.zip -SL http://repository.rainloop.net/v2/webmail/rainloop-latest.zip \
 	&& unzip rainloop.zip -d /usr/share/nginx/html \
 	&& rm rainloop.zip \
