@@ -8,10 +8,9 @@ RUN \
     && apk add --update \
         curl \
     && rm -fr /var/cache/apk/* \
-    && mkdir -p /usr/share/nginx/html \
 	&& curl -o rainloop.zip -SL http://repository.rainloop.net/v2/webmail/rainloop-latest.zip \
-	&& unzip rainloop.zip -d /usr/share/nginx/html \
+	&& unzip rainloop.zip -d /opt/www/webmail \
 	&& rm rainloop.zip \
-	&& chown -Rf nginx.nginx /usr/share/nginx/html
+	&& chown -Rf nginx.nginx /opt/www/webmail
 
-VOLUME ["/usr/share/nginx/html"]
+VOLUME ["/opt/www/webmail"]
