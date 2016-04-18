@@ -84,7 +84,7 @@ server {
         fastcgi_read_timeout 630;
     }
 
-    location ^~ /data {
+    location ^~ /webmail/data {
       deny all;
     }
 
