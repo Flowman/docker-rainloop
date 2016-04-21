@@ -3,15 +3,15 @@ FROM alpine:latest
 MAINTAINER Peter Szalatnay <theotherland@gmail.com>
 
 RUN \
-    apk add --update \
+    addgroup -S nginx \
+    && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
+    && apk add --no-cache \
         curl \
-    && rm -fr /var/cache/apk/* \
-    && mkdir -p /opt/www/webmail/data \
     && curl -o rainloop.zip -SL http://repository.rainloop.net/v2/webmail/rainloop-latest.zip \
-    && unzip rainloop.zip -d /opt/www/webmail \
+    && unzip rainloop.zip -d /usr/share/nginx/html \
     && rm rainloop.zip \
-    && chown -Rf 33.33 /opt/www/webmail
+    && chown -Rf nginx.nginx /usr/share/nginx/html
 
-COPY ./default /etc/nginx/sites-enabled/default
+COPY ./default /etc/nginx/conf.d/
 
-VOLUME ["/opt/www/webmail", "/etc/nginx/sites-enabled"]
+VOLUME ["/usr/share/nginx/html", "/etc/nginx/conf.d/"]
