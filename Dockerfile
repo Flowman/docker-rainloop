@@ -13,6 +13,6 @@ RUN \
     && rm rainloop.zip \
     && chown -Rf nginx.nginx /usr/share/nginx/html
 
-COPY ./default /etc/nginx/conf.d/
+COPY ./default.conf /etc/nginx/conf.d/
 
 VOLUME ["/usr/share/nginx/html", "/etc/nginx/conf.d/"]
